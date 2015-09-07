@@ -27,10 +27,26 @@ public class HeartbeatServiceImpl implements HeartbeatService{
         if (null == heartbeat){
             heartbeat = new Heartbeat();
         }
+        Boolean needUpdateConfig = heartbeat.getNeedUpdateConfig();
+        if (needUpdateConfig){//just first time return true,request next time will be false
+            heartbeat.setNeedUpdateConfig(Boolean.FALSE);
+        }
         heartbeat.setLastPingTime(new Date());
         heartbeat.setVendingId(vendingId);
         heartbeatRepository.save(heartbeat);
         logger.info("heartbeat->lastPingTime:"+heartbeat.getLastPingTime());
-        return heartbeat.getNeedUpdateConfig();
+        return needUpdateConfig;
+    }
+
+    @Override
+    public Boolean setNeedUpdate(String vendingId) {
+        Boolean success = Boolean.FALSE;
+        Heartbeat heartbeat = heartbeatRepository.findByVendingId(vendingId);
+        if(heartbeat != null){
+            heartbeat.setNeedUpdateConfig(Boolean.TRUE);
+            heartbeatRepository.save(heartbeat);
+            success = Boolean.TRUE;
+        }
+        return success;
     }
 }

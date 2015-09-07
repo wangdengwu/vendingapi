@@ -20,7 +20,7 @@ public class Heartbeat implements Serializable {
     @Column
     private Date lastPingTime;
     @Column
-    private Boolean needUpdateConfig;
+    private Boolean needUpdateConfig = Boolean.FALSE;
 
     public String getVendingId() {
         return vendingId;

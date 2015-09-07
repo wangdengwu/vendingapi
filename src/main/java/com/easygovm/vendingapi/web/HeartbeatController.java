@@ -22,4 +22,13 @@ public class HeartbeatController {
         Boolean needUpdateConfig = heartbeatService.pingAndGetIfNeedUpdateConfig(vendingId);
         return new HeartbeatView(needUpdateConfig);
     }
+
+    @RequestMapping(value = "/api/ping/{vendingId}/{needUpdate}",method = RequestMethod.GET)
+    public Boolean setNeedUpdate(@PathVariable String vendingId,@PathVariable Boolean needUpdate) {
+        Boolean success = Boolean.FALSE;
+        if(needUpdate){
+           success =  heartbeatService.setNeedUpdate(vendingId);
+        }
+        return success;
+    }
 }

@@ -5,4 +5,6 @@ package com.easygovm.vendingapi.service;
  */
 public interface HeartbeatService {
     public Boolean pingAndGetIfNeedUpdateConfig(String vendingId);
+
+    Boolean setNeedUpdate(String vendingId);
 }
