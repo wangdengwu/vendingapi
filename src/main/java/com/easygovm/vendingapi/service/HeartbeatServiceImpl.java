@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Service
 @Transactional
-public class HeartbeatServiceImpl implements HeartbeatService{
+public class HeartbeatServiceImpl implements HeartbeatService {
     private static final Logger logger = LoggerFactory.getLogger(HeartbeatServiceImpl.class);
 
     @Autowired
@@ -24,17 +24,17 @@ public class HeartbeatServiceImpl implements HeartbeatService{
     @Override
     public Boolean pingAndGetIfNeedUpdateConfig(String vendingId) {
         Heartbeat heartbeat = heartbeatRepository.findByVendingId(vendingId);
-        if (null == heartbeat){
+        if (null == heartbeat) {
             heartbeat = new Heartbeat();
         }
         Boolean needUpdateConfig = heartbeat.getNeedUpdateConfig();
-        if (needUpdateConfig){//just first time return true,request next time will be false
+        if (needUpdateConfig) {//just first time return true,request next time will be false
             heartbeat.setNeedUpdateConfig(Boolean.FALSE);
         }
         heartbeat.setLastPingTime(new Date());
         heartbeat.setVendingId(vendingId);
         heartbeatRepository.save(heartbeat);
-        logger.info("heartbeat->lastPingTime:"+heartbeat.getLastPingTime());
+        logger.info("heartbeat->lastPingTime:" + heartbeat.getLastPingTime());
         return needUpdateConfig;
     }
 
@@ -42,7 +42,7 @@ public class HeartbeatServiceImpl implements HeartbeatService{
     public Boolean setNeedUpdate(String vendingId) {
         Boolean success = Boolean.FALSE;
         Heartbeat heartbeat = heartbeatRepository.findByVendingId(vendingId);
-        if(heartbeat != null){
+        if (heartbeat != null) {
             heartbeat.setNeedUpdateConfig(Boolean.TRUE);
             heartbeatRepository.save(heartbeat);
             success = Boolean.TRUE;

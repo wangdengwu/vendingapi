@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by dwwang on 9/7/15.
  */
-public interface HeartbeatRepository extends CrudRepository<Heartbeat,Long> {
+public interface HeartbeatRepository extends CrudRepository<Heartbeat, Long> {
     public Heartbeat findByVendingId(String vendingId);
 }

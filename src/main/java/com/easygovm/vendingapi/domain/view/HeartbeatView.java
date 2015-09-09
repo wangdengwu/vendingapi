@@ -9,6 +9,7 @@ public class HeartbeatView {
     public HeartbeatView(Boolean needUpdateConfig) {
         this.needUpdateConfig = needUpdateConfig;
     }
+
     public Boolean getNeedUpdateConfig() {
         return needUpdateConfig;
     }

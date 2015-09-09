@@ -1,0 +1,4 @@
+<dataset>
+    <heartbeat id="1" vending_id="123456" last_ping_time="2015-09-09 11:51:54.0" need_update_config="0"/>
+    <heartbeat id="2" vending_id="654321" last_ping_time="2015-09-09 13:41:44.0" need_update_config="0"/>
+</dataset>

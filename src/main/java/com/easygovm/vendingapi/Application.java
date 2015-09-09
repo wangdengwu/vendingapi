@@ -18,7 +18,7 @@ import java.util.List;
 public class Application extends SpringBootServletInitializer {
 
     @Bean
-    public FilterRegistrationBean authorizationFilter(){
+    public FilterRegistrationBean authorizationFilter() {
         FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
         TestFilter authorizationFilter = new TestFilter();
         filterRegBean.setFilter(authorizationFilter);
@@ -34,6 +34,6 @@ public class Application extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(Application.class, args);
     }
 }

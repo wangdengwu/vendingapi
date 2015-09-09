@@ -17,17 +17,17 @@ public class HeartbeatController {
     @Autowired
     private HeartbeatService heartbeatService;
 
-    @RequestMapping(value = "/api/ping/{vendingId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/ping/{vendingId}", method = RequestMethod.GET)
     public HeartbeatView ping(@PathVariable String vendingId) {
         Boolean needUpdateConfig = heartbeatService.pingAndGetIfNeedUpdateConfig(vendingId);
         return new HeartbeatView(needUpdateConfig);
     }
 
-    @RequestMapping(value = "/api/ping/{vendingId}/{needUpdate}",method = RequestMethod.GET)
-    public Boolean setNeedUpdate(@PathVariable String vendingId,@PathVariable Boolean needUpdate) {
+    @RequestMapping(value = "/api/ping/{vendingId}/{needUpdate}", method = RequestMethod.GET)
+    public Boolean setNeedUpdate(@PathVariable String vendingId, @PathVariable Boolean needUpdate) {
         Boolean success = Boolean.FALSE;
-        if(needUpdate){
-           success =  heartbeatService.setNeedUpdate(vendingId);
+        if (needUpdate) {
+            success = heartbeatService.setNeedUpdate(vendingId);
         }
         return success;
     }
